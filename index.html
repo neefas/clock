@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Time date clock</title>
+  </head>
+  <body>
+    <div id="time"></div>
+    <div id="date"></div>
+
+    <style>
+
+      body {
+        text-align: center;
+        padding: 20vh;
+      }
+
+      #time {
+        font-size: 150px;
+        margin-bottom: 50px;
+      }
+
+      #date {
+        font-size: 70px;
+        direction: rtl;
+      }
+    </style>
+
+    <script type="text/javascript">
+      var now = null;
+      var time = "";
+      var date = "";
+      var day_of_week = "";
+      var month = "";
+      var day_of_month = "";
+      var year = "";
+      var hours = "";
+      var minutes = "";
+
+      var ampm = "";
+      var days = ['الأحد','الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت' ];
+
+      var months = ['كانُون الثانِي', 'شُباط', 'آذار', 'نَيْسان', 'أَيّار', 'حَزِيران', 'تَمُّوز', 'آب', 'أَيْلُول' , 'تِشْرِين الْأَوَّل', 'تِشْرِين الثانِي', 'كانُون الْأَوَّل']
+      var timer = setInterval(function(){
+        now = new Date(Date.now());
+
+        time = now.getHours() + ":" + now.getMinutes() + " " + now.get;
+        
+        date = now.toDateString();
+        
+        day_of_week = days[now.getDay()];
+        day_of_month = now.getDate();
+        year = now.getFullYear();
+        month = months[now.getMonth()];
+
+        hours = now.getHours();
+        minutes = now.getMinutes();
+
+        ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        time = hours + ':' + minutes + ' ' + ampm;
+
+        //`toDateString()`, `getMonth()`, `getDate()`, and `getFullYear()`
+        // console.log(date + " " + time);
+
+        document.getElementById("time").innerHTML = time;
+        document.getElementById("date").innerHTML = day_of_week + ' ' + day_of_month + ' ' + month + '، ' + year;
+
+      }, 1000);
+
+    </script>
+
+  </body>
+  
+</html>
